@@ -1,0 +1,17 @@
+[project]
+name = "fluviglyph"
+version = "0.1.0"
+description = "Typography carved by rivers — letterforms worn into being by simulated fluid erosion (stable-fluids Navier-Stokes + shear-stress ablation + sediment transport, extracted via marching cubes)."
+requires-python = ">=3.13"
+dependencies = [
+    "matplotlib>=3.11.0",
+    "numpy>=2.5.0",
+    "scikit-image>=0.26.0",
+    "scipy>=1.18.0",
+    "trimesh>=4.12.2",
+]
+
+[dependency-groups]
+dev = [
+    "playwright>=1.60.0",
+]

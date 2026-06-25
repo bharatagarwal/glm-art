@@ -1,0 +1,18 @@
+# macOS
+.DS_Store
+
+# Python-generated files
+__pycache__/
+*.py[oc]
+build/
+dist/
+wheels/
+*.egg-info
+
+# Virtual environments
+.venv
+
+# Output artifacts — everything regeneratable under output/ is ignored except
+# the three deliverable stereo videos (kept small, ~3.4MB total).
+output/*
+!output/*.mp4
