@@ -175,7 +175,7 @@ HTML_TEMPLATE = r"""<!DOCTYPE html>
       <div class="iterlabel" id="iterlabel">iter 0 / __ITERS__</div>
     </div>
   </div>
-  <footer>the river is the sculptor; the code merely watches · <span style="color:var(--accent)">fluviglyph</span></footer>
+  <footer>the river is the sculptor; the code merely watches · <span style="color:var(--accent)">fluvioglyph</span></footer>
 </div>
 <div id="loading">gathering the river…</div>
 
@@ -311,7 +311,7 @@ function animate(){
 
 document.getElementById('loading').style.display='none';
 function renderNow(){ controls.update(); renderFn(scene, camera); }
-window.__fluviglyph = { scene, camera, stoneMeshes, renderer, effect, renderFn, renderNow, setFrac, get frac(){return frac;} };
+window.__fluvioglyph = { scene, camera, stoneMeshes, renderer, effect, renderFn, renderNow, setFrac, get frac(){return frac;} };
 animate();
 
 window.addEventListener('resize', ()=>{

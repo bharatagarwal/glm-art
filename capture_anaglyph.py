@@ -1,11 +1,11 @@
-"""Deterministically capture the fluviglyph 3D viewer as frames.
+"""Deterministically capture the fluvioglyph 3D viewer as frames.
 
     uv run python capture_anaglyph.py --mode anaglyph --sanity
     uv run python capture_anaglyph.py --mode sbs --frames 301 --width 2560 --height 1280
     uv run python capture_anaglyph.py --mode sbs --frames 301 --workers 6
 
 The page's wall-clock playback (DURATION) is bypassed: for each frac in [0,1]
-we call window.__fluviglyph.setFrac(f) then renderNow() then screenshot the
+we call window.__fluvioglyph.setFrac(f) then renderNow() then screenshot the
 <canvas> element directly (clean WebGL pixels, no HTML overlay chrome), so
 frame<->content is exact and reproducible. Stitch with ffmpeg afterwards.
 
@@ -39,9 +39,9 @@ GPU_ARGS = ["--use-gl=angle", "--use-angle=metal", "--enable-gpu",
             "--ignore-gpu-blocklist"]
 
 HTML_BY_MODE = {
-    "flat": ROOT / "output" / "fluviglyph_flat.html",
-    "anaglyph": ROOT / "output" / "fluviglyph.html",
-    "sbs": ROOT / "output" / "fluviglyph_sbs.html",
+    "flat": ROOT / "output" / "fluvioglyph_flat.html",
+    "anaglyph": ROOT / "output" / "fluvioglyph.html",
+    "sbs": ROOT / "output" / "fluvioglyph_sbs.html",
 }
 OUT_BY_MODE = {
     "flat": ROOT / "output" / "flat_frames",
@@ -75,12 +75,12 @@ async def _worker(browser, mode: str, indices: list[int], fracs: list[float],
     await page.goto(HTML_BY_MODE[mode].as_uri(), wait_until="domcontentloaded",
                     timeout=180_000)
     await page.wait_for_function(
-        "window.__fluviglyph && typeof window.__fluviglyph.setFrac==='function'",
+        "window.__fluvioglyph && typeof window.__fluvioglyph.setFrac==='function'",
         timeout=60_000)
     canvas = page.locator("canvas")
     for idx, f in zip(indices, fracs):
         await page.evaluate(
-            "(f) => { window.__fluviglyph.setFrac(f); window.__fluviglyph.renderNow(); }",
+            "(f) => { window.__fluvioglyph.setFrac(f); window.__fluvioglyph.renderNow(); }",
             f)
         await page.wait_for_timeout(40)
         await canvas.screenshot(path=str(out / f"frame_{idx:05d}.png"))

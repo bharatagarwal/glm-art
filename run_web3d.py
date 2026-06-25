@@ -12,8 +12,8 @@ from pathlib import Path
 import numpy as np
 from skimage.measure import marching_cubes
 
-from fluviglyph import World, FluidSolver, ErosionModel
-from fluviglyph.web3d import build_html
+from fluvioglyph import World, FluidSolver, ErosionModel
+from fluvioglyph.web3d import build_html
 
 
 MODES = {"anaglyph", "sbs", "flat"}
@@ -65,7 +65,7 @@ def main() -> None:
 
     out = Path(args.out); out.mkdir(parents=True, exist_ok=True)
 
-    print(f"fluviglyph · carving '{args.word}' over {args.iterations} iterations")
+    print(f"fluvioglyph · carving '{args.word}' over {args.iterations} iterations")
     world = World.from_word(args.word, nx=args.nx, ny=args.ny, nz=args.nz)
     fluid = FluidSolver(world, viscosity=1e-5, jacobi_proj=8, jacobi_diff=3)
     erosion = ErosionModel(world, dt=args.dt)
@@ -94,8 +94,8 @@ def main() -> None:
     # pullback) — it's the 2D reference a viewer can compare against the stereo
     # outputs. SBS needs the pullback for square-eye framing; flat/anaglyph do not.
     scale = args.sbs_cam_scale if args.mode == "sbs" else 1.0
-    name = {"anaglyph": "fluviglyph", "sbs": "fluviglyph_sbs",
-            "flat": "fluviglyph_flat"}[args.mode]
+    name = {"anaglyph": "fluvioglyph", "sbs": "fluvioglyph_sbs",
+            "flat": "fluvioglyph_flat"}[args.mode]
     html_path = out / f"{name}.html"
     build_html(args.word, args.iterations, mesh_frames, frame_iters, str(html_path),
                mode=args.mode, sbs_cam_scale=scale, eye_sep=args.eye_sep)

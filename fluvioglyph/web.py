@@ -210,7 +210,7 @@ HTML_TEMPLATE = """<!DOCTYPE html>
   </div>
 
   <footer>
-    the river is the sculptor; the code merely watches · <span>fluviglyph</span>
+    the river is the sculptor; the code merely watches · <span>fluvioglyph</span>
   </footer>
 </div>
 

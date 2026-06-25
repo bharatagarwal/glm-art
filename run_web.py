@@ -1,8 +1,8 @@
-"""Run the full fluviglyph carving and emit a single self-contained HTML viewer.
+"""Run the full fluvioglyph carving and emit a single self-contained HTML viewer.
 
     uv run python run_web.py --word WORN --iterations 100
 
-Produces output/fluviglyph.html — open it in any browser.
+Produces output/fluvioglyph.html — open it in any browser.
 """
 
 from __future__ import annotations
@@ -14,8 +14,8 @@ from pathlib import Path
 
 import numpy as np
 
-from fluviglyph import World, FluidSolver, ErosionModel, extract_mesh
-from fluviglyph.web import build_html
+from fluvioglyph import World, FluidSolver, ErosionModel, extract_mesh
+from fluvioglyph.web import build_html
 
 
 def main() -> None:
@@ -34,7 +34,7 @@ def main() -> None:
     out = Path(args.out)
     out.mkdir(parents=True, exist_ok=True)
 
-    print(f"fluviglyph · carving '{args.word}' over {args.iterations} iterations")
+    print(f"fluvioglyph · carving '{args.word}' over {args.iterations} iterations")
     world = World.from_word(args.word, nx=args.nx, ny=args.ny, nz=args.nz)
     fluid = FluidSolver(world, viscosity=1e-5, jacobi_proj=8, jacobi_diff=3)
     erosion = ErosionModel(world, dt=args.dt)
@@ -82,7 +82,7 @@ def main() -> None:
     print(f"  mesh: {len(mesh.vertices)} verts, {len(mesh.faces)} faces, "
           f"{len(glb_bytes)/1024:.0f} KB glb")
 
-    html_path = out / "fluviglyph.html"
+    html_path = out / "fluvioglyph.html"
     build_html(args.word, args.iterations, frames, frame_u, frame_v,
                frame_iters, glb_bytes, str(html_path))
     print(f"wrote {html_path} ({html_path.stat().st_size/1024:.0f} KB) — open it in a browser")

@@ -14,7 +14,7 @@ from pathlib import Path
 
 import numpy as np
 
-from fluviglyph import (
+from fluvioglyph import (
     World,
     FluidSolver,
     ErosionModel,
@@ -42,7 +42,7 @@ def main() -> None:
     out.mkdir(parents=True, exist_ok=True)
     ckpt = out / "checkpoints"; ckpt.mkdir(exist_ok=True)
 
-    print(f"fluviglyph · carving '{args.word}' in a river of {args.iterations} iterations")
+    print(f"fluvioglyph · carving '{args.word}' in a river of {args.iterations} iterations")
     world = World.from_word(args.word, nx=args.nx, ny=args.ny, nz=args.nz)
     fluid = FluidSolver(world, viscosity=1e-5, jacobi_proj=8, jacobi_diff=3)
     erosion = ErosionModel(world, dt=args.dt)

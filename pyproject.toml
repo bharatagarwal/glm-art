@@ -1,5 +1,5 @@
 [project]
-name = "fluviglyph"
+name = "fluvioglyph"
 version = "0.1.0"
 description = "Typography carved by rivers — letterforms worn into being by simulated fluid erosion (stable-fluids Navier-Stokes + shear-stress ablation + sediment transport, extracted via marching cubes)."
 requires-python = ">=3.13"

@@ -1,7 +1,7 @@
 """Diagnose why erosion isn't biting."""
 import numpy as np
-from fluviglyph import World, FluidSolver, ErosionModel
-from fluviglyph.erosion import _air_adjacent_to_stone
+from fluvioglyph import World, FluidSolver, ErosionModel
+from fluvioglyph.erosion import _air_adjacent_to_stone
 
 w = World.from_word("WORN", nx=64, ny=32, nz=28)
 fluid = FluidSolver(w, viscosity=1e-5)

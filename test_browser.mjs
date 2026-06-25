@@ -4,7 +4,7 @@ const p = await b.newPage({ viewport: { width: 1280, height: 800 } });
 const errs = [];
 p.on('console', m => errs.push(`[${m.type()}] ${m.text()}`));
 p.on('pageerror', e => errs.push(`[pageerror] ${e.message}\n${e.stack||''}`));
-await p.goto('file:///Users/bharat/repos/glm-art/output/fluviglyph.html', { waitUntil: 'networkidle', timeout: 60000 });
+await p.goto('file:///Users/bharat/repos/glm-art/output/fluvioglyph.html', { waitUntil: 'networkidle', timeout: 60000 });
 await p.waitForTimeout(3000);
 await p.screenshot({ path: 'output/shot_0_initial.png' });
 // press play and advance

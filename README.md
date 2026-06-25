@@ -1,4 +1,4 @@
-# fluviglyph
+# fluvioglyph
 
 Typography carved by rivers. A letterform is dropped into a virtual Navier–Stokes
 current; shear stress ablates the stone and sediment is carried off. After many
@@ -10,9 +10,9 @@ stable-fluids current), all frame-locked on the same timeline:
 
 | video | format | view with |
 |---|---|---|
-| `output/fluviglyph_flat.mp4` | 2D mono reference (1920×1080) | plain |
+| `output/fluvioglyph_flat.mp4` | 2D mono reference (1920×1080) | plain |
 | `output/anaglyph.mp4` | red/cyan anaglyph (1920×1080) | red/cyan glasses, red over left |
-| `output/fluviglyph_sbs.mp4` | side-by-side, two 1280×1280 square eyes | 3D-SBS player / headset, or `mpv --vf=stereo3d=sbsl:arcd` |
+| `output/fluvioglyph_sbs.mp4` | side-by-side, two 1280×1280 square eyes | 3D-SBS player / headset, or `mpv --vf=stereo3d=sbsl:arcd` |
 
 ## Pipeline
 
@@ -24,10 +24,10 @@ uv run python run_web3d.py --word TIME --iterations 300 --frames 200 --mode flat
 
 # capture deterministic frames + stitch to mp4 (GPU-accelerated, 6 parallel workers)
 uv run python capture_anaglyph.py --mode sbs --frames 301 --width 2560 --height 1280 --workers 6
-ffmpeg -framerate 30 -i output/sbs_frames/frame_%05d.png -c:v libx264 -pix_fmt yuv420p -crf 18 output/fluviglyph_sbs.mp4
+ffmpeg -framerate 30 -i output/sbs_frames/frame_%05d.png -c:v libx264 -pix_fmt yuv420p -crf 18 output/fluvioglyph_sbs.mp4
 ```
 
-The 3D viewer (`fluviglyph/web3d.py`) builds a single self-contained HTML with
+The 3D viewer (`fluvioglyph/web3d.py`) builds a single self-contained HTML with
 three.js. Stereo modes use an off-axis asymmetric-frustum `StereoCamera`
 (keystone-free) converged on the word:
 
